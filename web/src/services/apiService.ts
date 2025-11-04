@@ -39,3 +39,9 @@ export async function getLinkByCode(code: string): Promise<ShortLink> {
 export async function incrementVisitCount(code: string): Promise<void> {
   await api.post(`/api/links/${code}/visit`)
 }
+
+// --- NOVA FUNÇÃO: Exportar CSV ---
+export async function exportLinksToCSV(): Promise<{ csvUrl: string }> {
+  const response = await api.post('/api/links/export/csv')
+  return response.data
+}
