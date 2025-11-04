@@ -164,7 +164,7 @@ Response:
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd server-node
+cd server
 ```
 
 2. **Install dependencies**
