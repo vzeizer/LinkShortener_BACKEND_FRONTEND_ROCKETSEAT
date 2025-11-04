@@ -1,10 +1,11 @@
 import { FormEvent, useState } from 'react'
-import { createShortLink, getLinks, deleteLink, incrementVisitCount } from '../services/apiService'
+import { createShortLink, getLinks, deleteLink, incrementVisitCount, exportLinksToCSV } from '../services/apiService'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { IconButton } from '../components/IconButton'
 import { Link } from 'lucide-react'
+import { api } from '../lib/axios'
 
 export function Home() {
   const [url, setUrl] = useState('')
@@ -117,46 +118,62 @@ export function Home() {
   const hasLinksToShow = links && links.length > 0
 
 
-function downloadCSV() {
+// function downloadCSV() {
+//   if (!links || links.length === 0) {
+//     alert('Não há links para exportar.')
+//     return
+//   }
+
+//   // Create CSV headers
+//   const headers = ['Link Encurtado', 'URL Original', 'Visitas', 'Data de Criação']
+  
+//   // Create CSV rows
+//   const csvData = links.map(link => {
+//     const displayName = link.custom_name || link.code
+//     const workingUrl = `${import.meta.env.VITE_FRONTEND_URL}/${displayName}` // Use the same URL as copy action
+//     const createdDate = new Date(link.created_at).toLocaleDateString('pt-BR')
+    
+//     return [
+//       workingUrl, // Changed from shortUrl to workingUrl
+//       link.original_url,
+//       link.access_count || 0,
+//       createdDate
+//     ]
+//   })
+
+//   // Combine headers and data
+//   const csvContent = [headers, ...csvData]
+//     .map(row => row.map(field => `"${field}"`).join(','))
+//     .join('\n')
+
+//   // Create and download the file
+//   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+//   const link = document.createElement('a')
+  
+//   if (link.download !== undefined) {
+//     const url = URL.createObjectURL(blob)
+//     link.setAttribute('href', url)
+//     link.setAttribute('download', `brev-ly-links-${new Date().toISOString().split('T')[0]}.csv`)
+//     link.style.visibility = 'hidden'
+//     document.body.appendChild(link)
+//     link.click()
+//     document.body.removeChild(link)
+//   }
+// }
+
+async function downloadCSV() {
   if (!links || links.length === 0) {
     alert('Não há links para exportar.')
     return
   }
 
-  // Create CSV headers
-  const headers = ['Link Encurtado', 'URL Original', 'Visitas', 'Data de Criação']
-  
-  // Create CSV rows
-  const csvData = links.map(link => {
-    const displayName = link.custom_name || link.code
-    const workingUrl = `${import.meta.env.VITE_FRONTEND_URL}/${displayName}` // Use the same URL as copy action
-    const createdDate = new Date(link.created_at).toLocaleDateString('pt-BR')
+  try {
+    const { csvUrl } = await exportLinksToCSV()
+    window.open(csvUrl, '_blank')
     
-    return [
-      workingUrl, // Changed from shortUrl to workingUrl
-      link.original_url,
-      link.access_count || 0,
-      createdDate
-    ]
-  })
-
-  // Combine headers and data
-  const csvContent = [headers, ...csvData]
-    .map(row => row.map(field => `"${field}"`).join(','))
-    .join('\n')
-
-  // Create and download the file
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
-  const link = document.createElement('a')
-  
-  if (link.download !== undefined) {
-    const url = URL.createObjectURL(blob)
-    link.setAttribute('href', url)
-    link.setAttribute('download', `brev-ly-links-${new Date().toISOString().split('T')[0]}.csv`)
-    link.style.visibility = 'hidden'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+  } catch (error) {
+    console.error('Erro ao exportar CSV:', error)
+    alert('Não foi possível exportar o CSV.')
   }
 }
 
