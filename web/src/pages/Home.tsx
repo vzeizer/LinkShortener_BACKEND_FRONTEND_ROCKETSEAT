@@ -34,24 +34,32 @@ export function Home() {
     },
   })
 
-  async function handleCreateShortLink(event: FormEvent) {
-    event.preventDefault()
-    if (!url.trim()) return
+async function handleCreateShortLink(event: FormEvent) {
+  event.preventDefault()
+  if (!url.trim()) return
 
-    try {
-      const newLink = await createLinkFn({ 
-        url: url.trim(), 
-        name: customName.trim() || undefined 
-      })
-      const displayName = newLink.custom_name || newLink.code
-      alert(`Link criado: brev.ly/${displayName}`)
-      setUrl('')
-      setCustomName('')
-    } catch (error) {
-      console.error('Erro ao criar o link:', error)
+  try {
+    const newLink = await createLinkFn({ 
+      url: url.trim(), 
+      name: customName.trim() || undefined 
+    })
+    const displayName = newLink.custom_name || newLink.code
+    alert(`Link criado: brev.ly/${displayName}`)
+    setUrl('')
+    setCustomName('')
+  } catch (error: any) {
+    console.error('Erro ao criar o link:', error)
+    
+    // Check if it's a validation error from the server
+    if (error?.response?.status === 400 && error?.response?.data?.message) {
+      // Show the specific validation error message
+      alert(error.response.data.message)
+    } else {
+      // Generic error message for other types of errors
       alert('Não foi possível criar o link.')
     }
   }
+}
 
   async function handleDeleteLink(id: string) {
     setDeletingId(id)
