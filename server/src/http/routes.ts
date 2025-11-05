@@ -229,7 +229,8 @@ app.delete('/api/links/:code', async (request, reply) => {
       // 1. Formatar o CSV [cite: 28]
       const csvHeader = 'URL original,URL encurtada,Contagem de acessos,Data de criação\n';
       const csvBody = allLinks.map(link => {
-        const shortUrl = `${env.CLOUDFLARE_PUBLIC_URL}/${link.code}`;
+//        const shortUrl = `${env.CLOUDFLARE_PUBLIC_URL}/${link.code}`;
+        const shortUrl = `${link.code}`;
         return `${link.original_url},${shortUrl},${link.access_count},${link.created_at.toISOString()}`;
       }).join('\n');
 
