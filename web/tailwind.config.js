@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Open Sans', 'sans-serif'],
+        sans: ['Open Sans'],
       },
       fontSize: {
         'xs': ['10px', '14px'],
