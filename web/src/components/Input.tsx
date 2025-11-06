@@ -19,7 +19,7 @@ const inputStyles = tv({
   base: 'border rounded-md p-3 outline-none text-gray-600 transition-colors text-center',
   variants: {
     state: {
-      default: 'border-gray-300 focus:border-brand-base',
+      default: 'border-gray-200 focus:border-brand-base',
       error: 'border-danger focus:border-danger placeholder:text-danger/50',
       focused: 'border-brand-base', // Add focused state
     },
