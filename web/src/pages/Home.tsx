@@ -61,17 +61,25 @@ async function handleCreateShortLink(event: FormEvent) {
   }
 }
 
-  async function handleDeleteLink(id: string) {
-    setDeletingId(id)
-    try {
-      await deleteLinkFn(id)
-      alert('Link excluído com sucesso!')
-    } catch (error) {
-      console.error('Erro ao excluir o link:', error)
-      alert('Não foi possível excluir o link.')
-    }
+async function handleDeleteLink(id: string) {
+  // Adiciona confirmação antes de deletar
+  const confirmDelete = window.confirm(
+    'Tem certeza de que deseja excluir este link? Esta ação não pode ser desfeita.'
+  )
+  
+  if (!confirmDelete) {
+    return // Cancela a operação se o usuário não confirmar
   }
 
+  setDeletingId(id)
+  try {
+    await deleteLinkFn(id)
+    alert('Link excluído com sucesso!')
+  } catch (error) {
+    console.error('Erro ao excluir o link:', error)
+    alert('Não foi possível excluir o link.')
+  }
+}
   async function handleCopyToClipboard(text: string) {
     try {
       await navigator.clipboard.writeText(text)
