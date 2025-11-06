@@ -202,7 +202,7 @@ async function handleCreateShortLink(event: FormEvent) {
                   <Button
                     variant="secondary"
                     onClick={downloadCSV}
-                    className="text-xs sm:text-sm group w-full sm:w-auto"
+                    className="text-xs sm:text-sm group w-full sm:w-auto bg-gray-200 hover:bg-gray-300 py-2 sm:py-2.5 px-3 sm:px-4 flex items-center justify-center gap-2"
                   >
                     <img 
                       src="/download-simple.svg" 
