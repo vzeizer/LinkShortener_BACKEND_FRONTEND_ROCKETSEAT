@@ -67,10 +67,9 @@ button:focus-visible {
   }
 }
 
-/* ...existing code... */
-
 /* Custom scrollbar styles */
 .custom-scrollbar::-webkit-scrollbar {
+  background: #2C46B1; /* brand-base (azul mais claro) */
   width: 8px;
 }
 
@@ -80,19 +79,20 @@ button:focus-visible {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #2C4091; /* brand-dark */
+  background: #2C46B1; /* brand-base (azul mais claro) */
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #2C46B1; /* brand-base for hover effect */
+  background: #2C4091; /* brand-dark para hover effect */
 }
 
 /* For Firefox */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #2C4091 #F9F9FB; /* thumb track */
+  scrollbar-color: #2C46B1 #F9F9FB; /* thumb track (azul mais claro) */
 }
+
 
 @tailwind base;
 @tailwind components;
