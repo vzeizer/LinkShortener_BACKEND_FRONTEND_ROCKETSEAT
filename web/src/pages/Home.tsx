@@ -182,10 +182,10 @@ async function handleDeleteLink(id: string) {
                   label="Link encurtado"
                   name="customName"
                   type="text"
-                  placeholder="brev.ly/"
+                  prefix="brev.ly/"
+                  placeholder="meu-link-personalizado"
                   value={customName}
                   onChange={(e) => setCustomName(e.target.value)}
-                  required
                 />
                 <Button
                   type="submit"
