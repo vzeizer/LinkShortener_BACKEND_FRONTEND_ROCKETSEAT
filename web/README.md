@@ -1,8 +1,10 @@
 # Brev.ly - URL Shortener Frontend
 
-A modern, responsive URL shortener web application built with React, TypeScript, and Vite. This is the frontend client for the Brev.ly URL shortening service.
+A modern, responsive URL shortener web application built with React, TypeScript, and Vite. This is the frontend client for the Brev.ly URL shortening service that provides a complete solution for creating, managing, and tracking shortened URLs with advanced analytics.
 
 ## ✅ Implemented Features
+
+### Core Functionality 
 
 - [x] Deve ser possível criar um link
     - [x] Validação de URL obrigatória
@@ -19,128 +21,190 @@ A modern, responsive URL shortener web application built with React, TypeScript,
 - [x] Trabalhe com elementos que tragam uma boa experiência ao usuário (`empty state`, ícones de carregamento, bloqueio de ações a depender do estado da aplicação);
 - [x] Foco na responsividade: essa aplicação deve ter um bom uso tanto em desktops quanto em celulares.
 
-## 🚀 Features
 
-- **URL Shortening**: Convert long URLs into short, shareable links with required URL validation
-- **Custom Names**: Create custom short URLs with personalized names (optional)
-- **Link Management**: View, copy, and delete your shortened links
-- **Visit Tracking**: Monitor click counts for each shortened link with automatic increment
-- **CSV Export**: Download comprehensive reports of all created links
-- **Real-time Updates**: Automatic refresh of link list after operations
-- **Responsive Design**: Mobile-friendly interface with Tailwind CSS
-- **Loading States**: Visual feedback with spinners during operations
-- **Error Handling**: Graceful error handling and user notifications
-- **Smart Redirects**: Automatic redirection with visit counting and 1.5-second delay
-- **Copy to Clipboard**: Easy sharing with one-click copy functionality
-- **Empty States**: User-friendly messages when no links exist
+### Core Functionality Improvements
+
+
+- [x] **Link Creation**: Create shortened URLs with comprehensive validation
+    - [x] Required URL validation with protocol detection
+    - [x] Custom name support with automatic prefix stripping
+    - [x] Reserved word protection for system endpoints
+    - [x] Duplicate code prevention with user-friendly error messages
+- [x] **Link Management**: Full CRUD operations for link management
+    - [x] View all created links in responsive table format
+    - [x] Delete links with confirmation dialogs
+    - [x] Copy links to clipboard with working frontend URLs
+- [x] **URL Redirection**: Smart redirection system with analytics
+    - [x] Automatic protocol detection and correction
+    - [x] 1.5-second delay for better user experience
+    - [x] Visit count increment before redirection
+- [x] **Analytics**: Comprehensive visit tracking and reporting
+    - [x] Real-time visit counter display
+    - [x] Manual visit increment API
+    - [x] CSV export with detailed analytics
+- [x] **Data Export**: Advanced CSV generation and cloud storage
+    - [x] Comprehensive CSV reports with all link metadata
+    - [x] Cloud storage integration via Cloudflare R2
+    - [x] Unique filename generation with UUID
+
+### Frontend Requirements Compliance
+- [x] **React SPA**: Built with React 19 and Vite bundler
+- [x] **User Experience**: Comprehensive UX enhancements
+    - [x] Loading states with Lucide spinners
+    - [x] Empty states with encouraging messaging
+    - [x] Action blocking during operations
+    - [x] Real-time feedback and notifications
+- [x] **Responsive Design**: Mobile-first approach with Tailwind CSS
+    - [x] Adaptive layouts for desktop, tablet, and mobile
+    - [x] Touch-friendly interactions
+    - [x] Responsive images and typography
+    - [x] Custom scrollbars for consistent styling
+
+## 🚀 Enhanced Features
+
+### Advanced URL Validation
+- **Protocol Detection**: Automatically adds `https://` for incomplete URLs
+- **Security Validation**: Blocks suspicious domains and localhost in production
+- **Format Validation**: Comprehensive URL structure validation with RFC compliance
+- **Length Limits**: Prevents extremely long URLs (2048 character limit)
+- **Normalization**: Automatic URL normalization and trailing slash handling
+
+### Smart Link Management
+- **Custom Names Priority**: Custom names take precedence over generated codes
+- **Prefix Stripping**: Automatically removes `brev.ly/` prefix from user input
+- **Reserved Words**: Protects system endpoints with reserved word checking
+- **Conflict Resolution**: Intelligent handling of duplicate codes with clear error messages
+
+### Enhanced Analytics System
+- **Dual Tracking Methods**: Both redirect-based and manual visit tracking
+- **Real-time Updates**: Immediate UI updates using TanStack Query
+- **Visit Counter Display**: Live visit count display in the interface
+- **Analytics Export**: Detailed CSV reports with timestamps and visit data
+
+### Advanced User Interface
+- **Conditional Layouts**: Dynamic layout switching based on content availability
+- **Loading States**: Granular loading indicators for each operation
+- **Error Boundaries**: Comprehensive error handling with user-friendly messages
+- **Responsive Tables**: Mobile-optimized table layouts with horizontal scrolling
+- **Custom Components**: Reusable component library with Tailwind Variants
 
 ## 🛠️ Tech Stack
 
-- **React 19** - Modern React with hooks
-- **TypeScript** - Type-safe development
-- **Vite** - Fast build tool and dev server
-- **React Router DOM v7** - Client-side routing
-- **TanStack Query v5** - Server state management
-- **Axios** - HTTP client for API requests
-- **Tailwind CSS v3** - Utility-first CSS framework
-- **Tailwind Variants** - Component variant management
-- **Lucide React** - Modern icon library
-- **ESLint** - Code linting and formatting
+### Frontend Core
+- **React 19** - Latest React with concurrent features
+- **TypeScript** - Full type safety and developer experience
+- **Vite** - Ultra-fast build tool with HMR
+- **React Router DOM v7** - Modern routing with data loading
 
-## 📁 Project Structure
+### State Management & Data Fetching
+- **TanStack Query v5** - Powerful server state management
+  - Intelligent caching and background updates
+  - Optimistic updates and error recovery
+  - Query invalidation and real-time synchronization
+- **Axios** - HTTP client with interceptors and request/response transformation
+
+### Styling & UI
+- **Tailwind CSS v3** - Utility-first CSS framework
+- **Tailwind Variants** - Type-safe component variants
+- **Tailwind Merge** - Intelligent class merging
+- **Lucide React** - Beautiful icon library
+- **Custom Design System** - Comprehensive color palette and typography
+
+### Development Tools
+- **ESLint** - Code quality and consistency
+- **TypeScript ESLint** - TypeScript-specific linting rules
+- **PostCSS** - CSS processing with Autoprefixer
+- **Modern ESLint Config** - Flat config format with React hooks support
+
+## 📁 Enhanced Project Structure
 
 ```
 src/
-├── components/
-│   ├── Button.tsx        # Reusable button component with variants and loading states
-│   ├── IconButton.tsx    # Icon-based button component with danger variant
-│   └── Input.tsx         # Form input component with focus states and validation
-├── pages/
-│   ├── Home.tsx          # Main page with conditional responsive layout
-│   ├── Redirect.tsx      # Handles redirects with 1.5s delay and visit counting
-│   └── NotFound.tsx      # 404 error page with responsive images
-├── services/
-│   └── apiService.ts     # Complete API service with all CRUD operations
-├── lib/
-│   └── axios.ts          # Axios configuration with environment variables
-├── App.tsx               # Main app component with routing
-├── main.tsx              # Application entry point with QueryClient setup
-├── index.css             # Global styles with custom scrollbar
-└── App.css               # Component-specific styles
+├── components/                    # Reusable UI components
+│   ├── Button.tsx                # Multi-variant button with loading states
+│   ├── IconButton.tsx            # Icon-based actions with danger variants
+│   └── Input.tsx                 # Form input with validation and focus states
+├── pages/                        # Route components
+│   ├── Home.tsx                  # Main interface with conditional layouts
+│   ├── Redirect.tsx              # Smart redirection with analytics
+│   └── NotFound.tsx              # 404 handling with responsive design
+├── services/                     # API integration layer
+│   └── apiService.ts             # Complete API service with error handling
+├── lib/                          # Utility libraries
+│   └── axios.ts                  # Configured HTTP client
+├── App.tsx                       # Main app with routing configuration
+├── main.tsx                      # Entry point with providers
+├── index.css                     # Global styles and custom scrollbar
+└── App.css                       # Legacy component styles
 ```
 
 ## 🚦 Getting Started
 
 ### Prerequisites
+- **Node.js** version 18 or higher
+- **npm** or **yarn** package manager
+- **Backend API** server running (see server documentation)
 
-- Node.js (version 18 or higher)
-- npm or yarn package manager
-- Backend API server running (see backend repository)
+### Installation & Setup
 
-### Installation
-
-1. Clone the repository:
+1. **Clone and navigate to the project**:
 ```bash
 git clone <repository-url>
 cd web
 ```
 
-2. Install dependencies:
+2. **Install dependencies**:
 ```bash
 npm install
 ```
 
-3. Set up environment variables:
+3. **Environment configuration**:
 ```bash
 cp .env.example .env
 ```
 
-4. Configure your environment variables in `.env`:
+4. **Configure environment variables**:
 ```env
 VITE_FRONTEND_URL=http://localhost:5173
 VITE_BACKEND_URL=http://localhost:3333
 ```
 
-### Development
+### Development Workflow
 
-Start the development server:
+**Start development server**:
 ```bash
 npm run dev
 ```
+*Application available at `http://localhost:5173`*
 
-The application will be available at `http://localhost:5173`
-
-### Build for Production
-
-Build the application:
+**Build for production**:
 ```bash
 npm run build
 ```
 
-Preview the production build:
+**Preview production build**:
 ```bash
 npm run preview
 ```
 
-## 🔧 Available Scripts
+**Run linting**:
+```bash
+npm run lint
+```
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production (TypeScript compilation + Vite build)
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+## 📚 Enhanced API Integration
 
-## 📚 API Integration
+The application integrates with a comprehensive backend API through [`apiService.ts`](src/services/apiService.ts):
 
-The application integrates with a backend API through the following services defined in [`apiService.ts`](src/services/apiService.ts):
+### Core API Functions
+- **`createShortLink(url, customName?)`** - Create links with validation and custom naming
+- **`getLinks()`** - Fetch paginated link list with analytics
+- **`deleteLink(code)`** - Remove specific links by code
+- **`getLinkByCode(code)`** - Retrieve link data for redirection
+- **`incrementVisitCount(code)`** - Manual analytics tracking
+- **`exportLinksToCSV()`** - Generate comprehensive CSV reports
 
-- `createShortLink(url, customName?)` - Create a new short link with optional custom name
-- `getLinks()` - Fetch all user's links with visit counts
-- `deleteLink(code)` - Delete a specific link by code
-- `getLinkByCode(code)` - Get link details by short code for redirects
-- `incrementVisitCount(code)` - Increment visit counter for analytics
-
-### API Response Format
-
+### Enhanced API Response Format
 ```typescript
 interface ShortLink {
   id: string
@@ -149,196 +213,284 @@ interface ShortLink {
   custom_name?: string
   created_at: string
   access_count?: number
+  short_url?: string  // Computed field for display
 }
 ```
 
-## 🎨 User Interface Components
+### Error Handling Strategy
+- **Validation Errors**: Real-time form validation with specific error messages
+- **Network Errors**: Graceful degradation with retry mechanisms
+- **Server Errors**: User-friendly error notifications with technical details in development
+- **Offline Support**: Cached data display when offline
 
-### Reusable Components
+## 🎨 Advanced UI Components
+
+### Enhanced Component Library
 
 #### Button Component ([`Button.tsx`](src/components/Button.tsx))
-- Multiple variants: `primary`, `secondary`, `tertiary`
-- Loading states with Lucide spinner
-- Disabled states with visual feedback
-- Built with Tailwind Variants for consistent styling
-- Icon support with proper spacing
+- **Variants**: `primary`, `secondary`, `tertiary` with consistent theming
+- **States**: Loading with Lucide spinner, disabled with visual feedback
+- **Accessibility**: Proper ARIA attributes and keyboard navigation
+- **Styling**: Tailwind Variants for maintainable variant management
 
 #### Input Component ([`Input.tsx`](src/components/Input.tsx))
-- Form validation states with color coding
-- Focus states with brand color highlighting
-- Accessible labels with proper associations
-- Error handling with visual feedback
-- Center-aligned text for better UX
+- **Validation States**: Error, focused, and default with color coding
+- **Accessibility**: Associated labels and proper form semantics
+- **Prefix Support**: `brev.ly/` prefix for custom URL input
+- **Focus Management**: Visual feedback and state tracking
 
 #### IconButton Component ([`IconButton.tsx`](src/components/IconButton.tsx))
-- Icon-based actions (copy, delete)
-- Danger variant for destructive actions
-- Loading states for async operations
-- Gray background for better visibility
+- **Action Types**: Copy, delete with appropriate visual feedback
+- **Danger Variant**: Red theming for destructive actions
+- **Loading States**: Individual loading indicators for async operations
+- **Accessibility**: Proper button semantics and tooltips
 
-### Page Components
+### Advanced Page Components
 
-#### Home Page ([`Home.tsx`](src/pages/Home.tsx))
-- **Conditional Responsive Layout**: Side-by-side on desktop when links exist, centered when empty
-- **Form Section**: 
-  - Required URL input with validation
-  - Optional custom name input
-  - Save button with loading state
-- **Links Table Section** (only shown when links exist):
-  - Sticky header with CSV download button
-  - Scrollable container with custom scrollbar
-  - Click-to-visit functionality with redirect system
+#### Home Page ([`Home.tsx`](src/pages/Home.tsx)) - Enhanced Features
+- **Adaptive Layout**: 
+  - Desktop: Side-by-side form and table when links exist
+  - Mobile: Stacked layout with responsive breakpoints
+  - Empty State: Centered form with encouraging messaging
+- **Form Section Enhancements**:
+  - Real-time URL validation with immediate feedback
+  - Custom name input with automatic prefix handling
+  - Loading states with disabled form during submission
+- **Advanced Table Features**:
+  - Sticky header with CSV export functionality
+  - Scrollable container with custom branded scrollbar
+  - Click-to-visit with smart redirection handling
   - Copy-to-clipboard with working frontend URLs
-  - Delete functionality with individual loading states
-  - Visit count display
-- **Empty State**: User-friendly message when no links exist
-- **CSV Export**: Downloads comprehensive report with all link data
+  - Individual delete confirmations with loading states
+  - Real-time visit count updates
+- **Enhanced User Experience**:
+  - Confirmation dialogs for destructive actions
+  - Success/error notifications with specific messaging
+  - Responsive breakpoint optimization
+  - Touch-friendly mobile interactions
 
-#### Redirect Page ([`Redirect.tsx`](src/pages/Redirect.tsx))
-- **1.5-second delay** before redirect for better UX
-- Automatic visit count increment before redirect
-- Loading state with responsive images
-- Error handling with navigation to NotFound
-- Protocol detection and correction (adds https:// if missing)
-- Graceful fallback if counter increment fails
+#### Redirect Page ([`Redirect.tsx`](src/pages/Redirect.tsx)) - Smart Redirection
+- **User Experience Optimization**:
+  - 1.5-second delay with loading animation
+  - Responsive loading images for different screen sizes
+  - Clear messaging about redirection status
+- **Analytics Integration**:
+  - Automatic visit count increment before redirect
+  - Fallback handling if analytics fails
+  - Query invalidation for real-time updates
+- **Protocol Handling**:
+  - Automatic `https://` addition for incomplete URLs
+  - Validation of URL format before redirection
+- **Error Handling**:
+  - Navigation to NotFound for invalid links
+  - Graceful error recovery with user notification
 
 #### NotFound Page ([`NotFound.tsx`](src/pages/NotFound.tsx))
-- Responsive design with different images for mobile/desktop
-- Clean error messaging with proper typography
-- Consistent branding and layout
+- **Responsive Design**: Different images for mobile and desktop
+- **Consistent Branding**: Matches overall application theme
+- **User Guidance**: Clear 404 messaging with proper typography
 
-## 🔄 State Management
+## 🔄 Advanced State Management
 
-The application uses TanStack Query for comprehensive server state management:
+### TanStack Query Integration
+The application uses TanStack Query v5 for sophisticated server state management:
 
-- **Caching**: Intelligent caching of API responses
-- **Background Updates**: Automatic refetching of stale data
-- **Optimistic Updates**: UI updates before API confirmation
-- **Error Handling**: Built-in error states and retry logic
-- **Loading States**: Granular loading indicators per operation
-- **Query Invalidation**: Automatic data refresh after mutations
+#### Caching Strategy
+- **Intelligent Caching**: Automatic background updates and stale-while-revalidate
+- **Query Invalidation**: Precise cache updates after mutations
+- **Background Refetching**: Keeps data fresh without user intervention
+- **Optimistic Updates**: Immediate UI feedback before server confirmation
 
-### Query Keys Structure
+#### Query Configuration
 ```typescript
-['links'] // All user links
-['redirectLink', shortUrl] // Individual link for redirection
+// Query Keys Structure
+['links']                    // All user links with pagination
+['redirectLink', shortUrl]   // Individual link for redirection
+
+// Mutation Handling
+- Individual loading states for granular UX
+- Success/error feedback with user notifications
+- Automatic query invalidation for real-time updates
+- Error recovery with retry mechanisms
 ```
 
-### Mutation Handling
-- Individual loading states for delete operations
-- Success/error feedback with alerts
-- Automatic query invalidation for real-time updates
+#### Error Handling & Loading States
+- **Granular Loading**: Individual loading indicators per operation
+- **Error Boundaries**: Graceful error recovery with user-friendly messages
+- **Retry Logic**: Automatic retry for transient failures
+- **Offline Support**: Cached data display when network unavailable
 
-## 🎯 Environment Configuration
+## 🎯 Environment Configuration & Security
 
-The application requires two environment variables:
+### Environment Variables
+The application uses environment-specific configuration:
 
-- `VITE_FRONTEND_URL` - The URL where the frontend is hosted (used for generating working links)
-- `VITE_BACKEND_URL` - The URL of the backend API server
+```env
+VITE_FRONTEND_URL=http://localhost:5173  # Frontend hosting URL
+VITE_BACKEND_URL=http://localhost:3333   # Backend API URL
+```
 
-These are configured in the [axios configuration](src/lib/axios.ts) and used throughout the application for:
-- API requests to backend
-- Generating copyable short URLs
-- Redirect system functionality
+### Usage Throughout Application
+- **API Requests**: Configured in [`axios.ts`](src/lib/axios.ts) for backend communication
+- **Link Generation**: Creates copyable URLs for sharing and CSV export
+- **Redirect System**: Generates working redirect URLs for the frontend routing
 
-## 📱 Responsive Design
+### Security Considerations
+- **Environment Validation**: Runtime validation of required environment variables
+- **URL Validation**: Client-side validation before API submission
+- **CORS Configuration**: Proper cross-origin request handling
+- **Error Information**: Sanitized error messages in production
 
-Built with Tailwind CSS for a mobile-first approach:
+## 📱 Responsive Design System
 
-### Design System
-- **Colors**: Custom brand colors defined in [`tailwind.config.js`](tailwind.config.js)
-  - Brand: `#2C46B1` (base), `#2C4091` (dark)
-  - Danger: `#B12C4D`
-  - Gray scale: 6 shades from `#F9F9FB` to `#1F2025`
-- **Typography**: Open Sans font family with custom font sizes
-- **Components**: Responsive table layout, mobile-friendly forms, adaptive button sizes
+### Mobile-First Approach
+Built with Tailwind CSS using a comprehensive mobile-first strategy:
 
-### Responsive Features
-- **Conditional layout switching**: Side-by-side (desktop) vs stacked (mobile)
-- **Table scrolling**: Custom scrollbar on mobile devices
-- **Responsive images**: Different images for mobile/desktop screens
-- **Touch-friendly elements**: Proper sizing for mobile interaction
-- **Breakpoint-specific visibility**: Hide/show elements based on screen size
+#### Design System Components
+- **Color Palette**: Custom brand colors with semantic naming
+  - Brand Colors: `#2C46B1` (base), `#2C4091` (dark)
+  - Danger Color: `#B12C4D`
+  - Gray Scale: 6-shade system from `#F9F9FB` to `#1F2025`
+- **Typography**: Open Sans font family with custom size scale
+- **Spacing**: Consistent spacing system with responsive modifiers
 
-### Custom Scrollbar
-Implemented in [`index.css`](src/index.css) with brand colors for consistent styling across the application.
+#### Responsive Features Implementation
+- **Conditional Layout Switching**: 
+  ```jsx
+  // Desktop: side-by-side layout when content exists
+  // Mobile: stacked layout with full width
+  className={`${hasLinksToShow 
+    ? "grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8" 
+    : "flex justify-center"
+  }`}
+  ```
+- **Responsive Table Design**:
+  - Horizontal scrolling on mobile devices
+  - Hidden columns on smaller screens
+  - Touch-friendly button sizing
+- **Adaptive Images**: Different images for mobile (`_mobile.png`) and desktop (`_desktop.png`)
+- **Breakpoint-Specific Visibility**: Strategic show/hide elements based on screen size
 
-## 🔧 Development Setup (Vite + React + TypeScript)
+#### Custom Scrollbar Implementation
+Implemented in [`index.css`](src/index.css) with brand colors:
+```css
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #2C46B1; /* brand-base */
+  border-radius: 4px;
+}
+```
 
-This project uses a modern development setup with:
+## 🔧 Modern Development Setup
 
 ### TypeScript Configuration
-- **App Config** ([`tsconfig.app.json`](tsconfig.app.json)): React app configuration with JSX support
-- **Node Config** ([`tsconfig.node.json`](tsconfig.node.json)): Vite configuration
-- **Root Config** ([`tsconfig.json`](tsconfig.json)): Project references
+- **App Config** ([`tsconfig.app.json`](tsconfig.app.json)): React-specific TypeScript configuration
+- **Node Config** ([`tsconfig.node.json`](tsconfig.node.json)): Vite tooling configuration
+- **Root Config** ([`tsconfig.json`](tsconfig.json)): Project references and global settings
 
-### ESLint Configuration ([`eslint.config.js`](eslint.config.js))
-- TypeScript ESLint rules
-- React Hooks plugin
-- React Refresh plugin for HMR
-- Modern ESLint flat config format
+### Build & Development Tools
+- **Vite Configuration** ([`vite.config.ts`](vite.config.ts)): Optimized build with React plugin
+- **ESLint Setup** ([`eslint.config.js`](eslint.config.js)): Modern flat config with React rules
+- **PostCSS** ([`postcss.config.js`](postcss.config.js)): Tailwind processing and Autoprefixer
 
-### Vite Configuration ([`vite.config.ts`](vite.config.ts))
-- React plugin for JSX support
-- Fast HMR (Hot Module Replacement)
-- Optimized build process
+### Development Scripts
+```bash
+npm run dev      # Development server with HMR
+npm run build    # Production build (TypeScript + Vite)
+npm run preview  # Preview production build locally
+npm run lint     # ESLint code quality check
+```
 
-### PostCSS Configuration ([`postcss.config.js`](postcss.config.js))
-- Tailwind CSS processing
-- Autoprefixer for browser compatibility
+## 🚀 Deployment & Production
 
-## 🚀 Deployment
+### Build Configuration
+- **TypeScript Compilation**: Full type checking before build
+- **Vite Optimization**: Tree shaking, code splitting, and asset optimization
+- **Static Asset Handling**: Optimized images and font loading
+- **Environment Variable Injection**: Runtime environment configuration
 
-The application is configured for easy deployment:
+### Deployment Options
+1. **Static Hosting**: Vercel, Netlify, GitHub Pages
+2. **CDN Distribution**: Cloudflare Pages, AWS CloudFront
+3. **Container Deployment**: Docker with Nginx
+4. **Server-Side Rendering**: Adaptation for Next.js or Remix
 
-1. **Build**: `npm run build` creates an optimized production build
-2. **Preview**: `npm run preview` allows local testing of the production build
-3. **Static Hosting**: Built files can be deployed to any static hosting service
+## 🔍 Advanced Features Deep Dive
 
-## 🔍 Key Features Explained
+### Custom Short URL System
+- **Naming Priority**: Custom names override generated codes
+- **Prefix Handling**: Automatic `brev.ly/` prefix stripping from user input
+- **Validation**: Character restrictions and length limits
+- **Conflict Resolution**: Duplicate detection with user-friendly error messages
 
-### Custom Short URLs
-Users can create personalized short URLs by providing a custom name (optional field), making links more memorable and brandable. The system uses either the custom name or auto-generated code.
+### Analytics & Visit Tracking
+- **Dual Tracking Methods**:
+  - Automatic increment on redirect for organic visits
+  - Manual increment API for programmatic tracking
+- **Real-time Updates**: Immediate UI reflection of visit count changes
+- **Data Persistence**: Server-side storage with PostgreSQL
 
-### Visit Analytics
-Every click on a shortened link increments a visit counter through the redirect system, providing accurate analytics for link performance.
+### CSV Export System
+- **Comprehensive Reporting**: All link metadata in structured format
+- **Cloud Storage**: Integration with Cloudflare R2 for reliable file access
+- **Unique Naming**: UUID-based filenames prevent conflicts
+- **Data Format**: Business-ready CSV with proper headers and formatting
 
-### Smart Protocol Handling
-The application automatically adds `https://` protocol to URLs that don't specify one, ensuring proper redirection functionality.
+### Smart Redirection Logic
+```typescript
+// Protocol detection and correction
+let urlToRedirect = data.original_url
+if (!urlToRedirect.startsWith('http://') && !urlToRedirect.startsWith('https://')) {
+  urlToRedirect = 'https://' + urlToRedirect
+}
 
-### CSV Export Functionality
-Users can download a comprehensive CSV report containing:
-- Working short URLs (frontend URLs)
-- Original URLs
-- Visit counts
-- Creation dates (formatted for Brazil locale)
+// User experience optimization with delay
+setTimeout(() => {
+  window.location.href = urlToRedirect
+}, 1500)
+```
 
-### Redirect System
-- 1.5-second delay provides better user experience
-- Visit counting happens before redirect
-- Graceful error handling
-- Protocol correction for incomplete URLs
+### Error Handling Strategy
+- **Validation Errors**: Real-time feedback with specific field-level messages
+- **Network Failures**: Graceful degradation with retry options
+- **Server Errors**: Development-friendly error details with production-safe user messages
+- **404 Handling**: Custom NotFound page with navigation options
 
-### Responsive Layout Logic
-The home page uses conditional rendering:
-- **With links**: Side-by-side layout (form + table) on desktop, stacked on mobile
-- **Without links**: Centered form with empty state message below
+## 🤝 Contributing & Development
 
-## 📄 License
+### Development Workflow
+1. **Setup**: Clone repository and install dependencies
+2. **Environment**: Configure local environment variables
+3. **Development**: Use `npm run dev` for local development
+4. **Testing**: Manual testing with backend integration
+5. **Building**: Verify production build with `npm run build`
+6. **Linting**: Ensure code quality with `npm run lint`
 
-This project is part of a learning exercise and is intended for educational purposes.
+### Code Quality Standards
+- **TypeScript**: Full type safety with strict mode enabled
+- **ESLint**: Consistent code style and React best practices
+- **Component Structure**: Reusable components with clear prop interfaces
+- **Error Handling**: Comprehensive error boundaries and user feedback
 
-## 🤝 Contributing
+### Project Enhancement Areas
+- **Testing**: Unit tests with Jest and React Testing Library
+- **Performance**: Bundle analysis and optimization
+- **Accessibility**: WCAG compliance and screen reader support
+- **Internationalization**: Multi-language support with i18n
 
-This is a personal learning project, but suggestions and improvements are welcome! Feel free to:
+## 📄 License & Usage
 
-- Report bugs or issues
-- Suggest new features
-- Improve documentation
-- Optimize performance
+This project is developed as part of the RocketSeat POS program and is intended for educational purposes. The codebase demonstrates modern React development practices and can serve as a reference for similar projects.
 
-## 🔗 Related Projects
+## 🔗 Backend Integration
 
-This frontend application works in conjunction with a backend API service. Make sure to set up the backend server and configure the appropriate environment variables for full functionality.
+This frontend application requires the backend API service for full functionality. The backend provides:
+- **URL Management**: CRUD operations for shortened URLs
+- **Analytics**: Visit tracking and reporting
+- **File Storage**: CSV export with cloud storage
+- **Validation**: Server-side URL and data validation
 
-The frontend generates working URLs in the format: `{VITE_FRONTEND_URL}/{custom_name || code}` which are used for copying and CSV export.
+Ensure the backend server is running and properly configured with the corresponding environment variables for seamless integration.
+
+---
+
+**Built with ❤️ using modern React ecosystem and best practices**
