@@ -130,7 +130,7 @@ dist/
 build/
 
 # TypeScript compiled output
-lib/
+#lib/
 es/
 
 # Test coverage
