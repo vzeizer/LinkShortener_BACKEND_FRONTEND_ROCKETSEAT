@@ -150,17 +150,16 @@ async function handleDeleteLink(id: string) {
         </header>
         
         {/* Main content with improved responsive layout */}
-        <div className={`
-          ${hasLinksToShow 
-            ? "grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8" 
-            : "flex justify-center"
-          }
-        `}>
-          
+          <div className={`
+            ${hasLinksToShow 
+              ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8" 
+              : "flex justify-center"
+            }
+          `}>          
           {/* Form section - responsive width and spacing */}
           <div className={`
             ${hasLinksToShow 
-              ? "xl:col-span-1 w-full" 
+              ? "lg:col-span-1 w-full" 
               : "w-full max-w-md"
             }
           `}>
@@ -202,7 +201,7 @@ async function handleDeleteLink(id: string) {
           {/* Table section - improved responsive design */}
           {hasLinksToShow && (
             <div className="xl:col-span-2 w-full">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="lg:col-span-1 xl:col-span-2 w-full">
                 
                 {/* Header with responsive layout */}
                 <div className="px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
