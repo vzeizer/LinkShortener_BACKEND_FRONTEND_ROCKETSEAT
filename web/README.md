@@ -60,6 +60,23 @@ A modern, responsive URL shortener web application built with React, TypeScript,
     - [x] Responsive images and typography
     - [x] Custom scrollbars for consistent styling
 
+
+## 📱 Fully Responsive Design
+
+This application was built with a **mobile-first** philosophy using **Tailwind CSS**, ensuring a seamless experience on any device, from smartphones to large desktops.
+
+### Key Responsive Strategies:
+
+*   **Adaptive Layouts**: The main layout on the [Home page](web/src/pages/Home.tsx) dynamically changes based on screen size. On mobile, it uses a simple, stacked single-column layout for easy scrolling. On larger screens (`lg` and `xl` breakpoints), it transforms into a multi-column grid, making better use of the available space.
+
+*   **Responsive Tables**: The link table is designed to be user-friendly on small screens. It becomes horizontally scrollable to prevent content overflow, and less critical columns like "URL Original" are hidden on mobile to reduce clutter.
+
+*   **Conditional Content**: The application serves different images for mobile and desktop on pages like [`RedirectPage`](web/src/pages/Redirect.tsx) and [`NotFound`](web/src/pages/NotFound.tsx), optimizing visuals and loading performance for the specific device.
+
+*   **Fluid Typography and Spacing**: All elements, including text, buttons, and padding, scale appropriately with the screen size, maintaining readability and a balanced design across all resolutions.
+
+These techniques ensure that the application is not just functional but also aesthetically pleasing and easy to navigate, regardless of how it's accessed.
+
 ## 🚀 Enhanced Features
 
 ### Advanced URL Validation
